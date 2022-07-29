@@ -1,0 +1,194 @@
+{
+  "anyOf": [
+    {
+      "type": "object",
+      "required": [
+        "updateMetaData"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "updateMetaData": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "title"
+          ],
+          "properties": {
+            "title": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "object",
+      "required": [
+        "removeWidget"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "removeWidget": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "widgetId"
+          ],
+          "properties": {
+            "widgetId": {
+              "type": "string",
+              "maxLength": 32,
+              "minLength": 32,
+              "pattern": "^[a-f0-9]{32}$"
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "addWidget"
+      ],
+      "properties": {
+        "addWidget": {
+          "type": "object",
+          "required": [
+            "widgetId",
+            "layout"
+          ],
+          "properties": {
+            "additionalProperties": false,
+            "widgetId": {
+              "type": "object",
+              "required": [
+                "w",
+                "h",
+                "x",
+                "y"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "w": {
+                  "type": "number"
+                },
+                "h": {
+                  "type": "number"
+                },
+                "x": {
+                  "type": "number"
+                },
+                "y": {
+                  "type": "number"
+                },
+                "isDraggable": {
+                  "type": "boolean"
+                },
+                "isResizable": {
+                  "type": "boolean"
+                },
+                "isBounded": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "parameter": true,
+            "layout": {
+              "type": "object",
+              "minProperties": 1,
+              "additionalProperties": false,
+              "patternProperties": {
+                "^[\\s\\S]*": true
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "updateLayouts"
+      ],
+      "properties": {
+        "updateLayouts": {
+          "type": "object",
+          "additionalProperties": false,
+          "minProperties": 1,
+          "patternProperties": {
+            "^[a-f0-9]{32}$": {
+              "type": "object",
+              "additionalProperties": false,
+              "minProperties": 1,
+              "patternProperties": {
+                "^[\\s\\S]*": {
+                  "type": "object",
+                  "required": [
+                    "w",
+                    "h",
+                    "x",
+                    "y"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "w": {
+                      "type": "number"
+                    },
+                    "h": {
+                      "type": "number"
+                    },
+                    "x": {
+                      "type": "number"
+                    },
+                    "y": {
+                      "type": "number"
+                    },
+                    "isDraggable": {
+                      "type": "boolean"
+                    },
+                    "isResizable": {
+                      "type": "boolean"
+                    },
+                    "isBounded": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "updateParameters"
+      ],
+      "properties": {
+        "updateParameters": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "parameters",
+            "dashboardWidgetId"
+          ],
+          "properties": {
+            "dashboardWidgetId": {
+              "type": "string",
+              "maxLength": 32,
+              "minLength": 32,
+              "pattern": "^[a-f0-9]{32}$"
+            },
+            "parameters": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    }
+  ]
+}
